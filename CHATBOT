@@ -1,0 +1,40 @@
+import requests
+import json
+
+# Replace with your actual API key and optional site info
+OPENROUTER_API_KEY = "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"
+YOUR_SITE_URL = "https://yourdomain.com"
+YOUR_SITE_NAME = "Your Chatbot App"
+
+def ask_chatbot(message):
+    url = "https://openrouter.ai/api/v1/chat/completions"
+    headers = {
+        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+        "Content-Type": "application/json",
+        "HTTP-Referer": YOUR_SITE_URL,      # Optional
+        "X-Title": YOUR_SITE_NAME           # Optional
+    }
+    payload = {
+        "model": "deepseek/deepseek-r1-0528:free",
+        "messages": [
+            {"role": "user", "content": message}
+        ]
+    }
+
+    response = requests.post(url, headers=headers, data=json.dumps(payload))
+
+    if response.status_code == 200:
+        data = response.json()
+        reply = data["choices"][0]["message"]["content"]
+        return reply
+    else:
+        print("Error:", response.status_code, response.text)
+        return None
+
+# Example use
+if __name__ == "__main__":
+        user_input = questionAsked+"answer in one line"
+        if user_input.lower() in ["exit", "quit"]:
+            reply = "Exiting the chatbot."
+        reply = ask_chatbot(user_input)
+        print("Bot:", reply)
