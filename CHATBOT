@@ -2,7 +2,7 @@ import requests
 import json
 
 # Replace with your actual API key and optional site info
-OPENROUTER_API_KEY = "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"
+OPENROUTER_API_KEY = "ADD YOUR API KEY"
 YOUR_SITE_URL = "https://yourdomain.com"
 YOUR_SITE_NAME = "Your Chatbot App"
 
