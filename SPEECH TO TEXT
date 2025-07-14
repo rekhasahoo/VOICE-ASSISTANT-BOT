@@ -1,0 +1,7 @@
+from transformers import pipeline
+
+pipe = pipeline("automatic-speech-recognition", model="openai/whisper-large-v3")
+
+result = pipe("audio.wav")
+questionAsked = result["text"];
+print(result["text"])
